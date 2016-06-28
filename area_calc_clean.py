@@ -4,32 +4,43 @@ for BWC that is in different protected zones.
 The inputs are:
     - range file (single file)
     - regions file (single file)
-    - "protected" areas file (changes on different runs, may loop through a set)
+    - "protected" areas file (single feature class that may contain multiple features)
         - Overlap is not accounted for if you are looking for cumulative coverage numbers.
     - undisturbed habitat file
 """
-
 # Imports
 import arcpy
 import os
 import csv
 
-# env
-arcpy.env.overwriteOutput = True
+### env
+##arcpy.env.overwriteOutput = True # Enable this if you want to overwrite outputs. Use at your own risk!
 
-# inputs
+# inputs (THIS IS WHAT YOU WANT TO MESS AROUND WITH JAMES)
 range_NT1 = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\boundaries\NT1"
-##regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\ENRITI_AdministrativeRegions_incl_Gw_YT_waterErase" # Admin or land claims. Can overlap. Shouldn't.
-regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\NWT_Regions_2015_LCs_waterErase"
+# ENABLE ONE OF THESE
+##regions = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\boundaries\ENRITI_AdministrativeRegions_incl_Gw_YT"
+##regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\raw_data\data_for_script.gdb\NWT_Regions_2015_LCs"
+##regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\ENRITI_AdministrativeRegions_incl_Gw_YT_waterErase"
+##regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\NWT_Regions_2015_LCs_waterErase"
 regions_name_field = "REGION"
-##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_2.gdb\protected_areas_CAM" # Such as "protected" and "conservation" areas. Could also iterate through several individual protected areas.
+# ENABLE ONE OF THESE
+## Original run files
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_2.gdb\protected_areas_CAM"
 ##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_2.gdb\conservation_areas_CAM_union"
-##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_2.gdb\combo_areas_CAM"
-areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\DC_SS_current_withdrawals"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_2.gdb\combo_areas_CAM" # Not really a useful one, but here anyway because I ran it.
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\DC_SS_current_withdrawals" # Probably less useful version. Use the one below.
+## Dissolved areas files
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\reworked_runs.gdb\protected_areas_CAM_diss"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\reworked_runs.gdb\conservation_areas_CAM_diss"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\reworked_runs.gdb\combo_areas_CAM_diss"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\reworked_runs.gdb\DC_SS_current_withdrawals"
 areas_field = "unique_area_name" # Names of the specific areas.
 undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_2015"
-output_location = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\main_runs\16" # Script creates an output file geodatabase here.
-run_name = "DC_SS_current_withdrawal__Landclaim__yes"
+# SET AN OUTPUT LOCATION AS A FOLDER SOMEWHERE.
+output_location = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data" # Script creates an output file geodatabase here.
+# GIVE THE OUTPUT A NAME (no spaces)
+run_name = "JAMES_GREAT_OUTPUT_NAME"
 out_csv_name = run_name.replace(" ", "_") + ".csv"
 
 # defaults
