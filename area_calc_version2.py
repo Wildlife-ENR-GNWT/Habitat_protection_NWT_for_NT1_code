@@ -16,24 +16,50 @@ Range = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\boundaries\NT1"
 ##regions = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\boundaries\ENRITI_AdministrativeRegions_incl_Gw_YT"
 ##regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\raw_data\data_for_script.gdb\NWT_Regions_2015_LCs"
 ##regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\ENRITI_AdministrativeRegions_incl_Gw_YT_waterErase"
-regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\NWT_Regions_2015_LCs_waterErase"
-regions_name_field = "REGION"
+##regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\NWT_Regions_2015_LCs_waterErase"
+##regions = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\boundaries\NT1"
+regions = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioA.gdb\inputs\NT1_er_water"
+##regions_name_field = "REGION"
+regions_name_field = "POPULATION"
 ## Overlapping is okay. However this will preclude post-analysis to get at total
 ## numbers. If total non-overlapping numbers are wanted then input will need to
-## be non-overlapping. Not the role of this script to do this step.
+## be non-overlapping. Not the role of this script to do this step. If different
+## areas have the same unique name (and additional info if additional fields are
+## included) they will be dissolved together in the script.
 ##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\main.gdb\scratch\scratch_current_protected"
-areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\main.gdb\Protected_current\current_protected_NWT_June27_2016_PROTECTED_diss2"
-areas_field = "protection_level"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\main.gdb\Protected_current\current_protected_NWT_June27_2016_PROTECTED_diss2"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\main.gdb\Protected_current\prot_and_cons_no_overlap_diss"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\main.gdb\Protected_current\current_protected_NWT_June27_2016"
+##areas = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\boundaries\ENRITI_AdministrativeRegions_incl_Gw_YT"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\raw_data\data_for_script.gdb\NWT_Regions_2015_LCs"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\ENRITI_AdministrativeRegions_incl_Gw_YT_waterErase"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\areas_3.gdb\NWT_Regions_2015_LCs_waterErase"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\main.gdb\Protected_current\current_all_NWT_July7_2016"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\main.gdb\scratch\conservation_july7_2016_reduced"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioA.gdb\inputs\scenario_A"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioA.gdb\inputs\scenario_A_2_diss"#
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioB.gdb\main\scenario_B_diss"
+areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioB.gdb\main\scenario_B_diss_by_scenario_level_3"
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioB.gdb\main\scenario_B_2_diss"#
+##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioA.gdb\inputs\scenario_A_2_diss_by_level_2"#
+##areas_field = "unique_area_name"
+areas_field = "scenario_level"
+##areas_field = "scenario"
+##areas_field = "REGION"
 ## You can input any number of fields that are in the original "areas" file.
 ## The attributes will be carried through to the output.
 ##carry_over_fields = ["additional_notes", "Protection_duration", "protection_level"]
 carry_over_fields = []
 undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_2015"
+##undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_2010"
+##undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_fireOnly_2010"
+##undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_anthropogenicOnly_2010"
 ## Script creates an output file geodatabase here.
-output_location = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data"
-run_name = "June27_run10_LCs_withoutWater_prot_vs_cons_areas"
-## Produces results in hectares. Based on the base unit of the inputs. Base unit
-## is commonly 1 metre.
+##output_location = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas"
+output_location = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\July12_on"
+run_name = "July13__run9__NT1__withoutWater__Scenario_B_dissolved_by_level"
+## Produces resulting area unit. Based on the base unit of the inputs. Base unit
+## is commonly 1 metre. 0.0001 produces hectares with 1m base unit.
 area_factor = 0.0001
 
 # Derived inputs
