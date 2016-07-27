@@ -45,10 +45,12 @@ regions_name_field = arcpy.GetParameterAsText(2)
 ##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioA.gdb\inputs\scenario_A"
 ##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioA.gdb\inputs\scenario_A_2_diss"#
 ##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioB.gdb\main\scenario_B_diss"
+areas = arcpy.GetParameterAsText(3)
 #areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioB.gdb\main\scenario_B_diss_by_scenario_level_3"
 ##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioB.gdb\main\scenario_B_2_diss"#
 ##areas = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas\scenarioA.gdb\inputs\scenario_A_2_diss_by_level_2"#
 ##areas_field = "unique_area_name"
+areas_field = arcpy.GetParameterAsText(4)
 #areas_field = "scenario_level"
 ##areas_field = "scenario"
 ##areas_field = "REGION"
@@ -56,22 +58,27 @@ regions_name_field = arcpy.GetParameterAsText(2)
 ## The attributes will be carried through to the output.
 ##carry_over_fields = ["additional_notes", "Protection_duration", "protection_level"]
 carry_over_fields = ""
-carry_over_fields = arcpy.GetParameterAsText()
+carry_over_fields = arcpy.GetParameterAsText(5)
 carry_over_fields = [x.replace(" ", "") for x in carry_over_fields.split(",")]
 if carry_over_fields == [""]:
     carry_over_fields = []
 ##carry_over_fields = []
+undist = arcpy.GetParameterAsText(6)
 #undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_2015"
 ##undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_2010"
 ##undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_fireOnly_2010"
 ##undist = r"H:\GIS\BWC_base_files\BWC_base_files.gdb\undisturbed\NT1_undisturbed_anthropogenicOnly_2010"
 ## Script creates an output file geodatabase here.
 ##output_location = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\redo_protected_areas"
+output_location = arcpy.GetParameterAsText(7)
 #output_location = r"H:\Boreal_Caribou_Range_Plan\GIS\Habitat_protection_NWT_for_NT1\analyzed_data\July12_on"
+run_name = arcpy.GetParameterAsText(8)
 #run_name = "July13__run9__NT1__withoutWater__Scenario_B_dissolved_by_level"
 ## Produces resulting area unit. Based on the base unit of the inputs. Base unit
 ## is commonly 1 metre. 0.0001 produces hectares with 1m base unit.
+area_factor = arcpy.GetParameterAsText(9)
 #area_factor = 0.0001
+area_factor = float(area_factor)
 
 # Derived inputs
 out_csv_name = run_name.replace(" ", "_") + ".csv"
