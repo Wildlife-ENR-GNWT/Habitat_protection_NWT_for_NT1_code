@@ -188,6 +188,7 @@ with open(out_csv, "wb") as myfile:
         wr.writerow(item)
     # Areas data
     for item in areas_regions_NT1_diss_output:
+        arcpy.AddMessage(item)
         wr.writerow(item)
     for item in areas_regions_NT1_diss_undist_output:
         wr.writerow(item)
